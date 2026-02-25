@@ -5,6 +5,7 @@ provider "registry.opentofu.org/terraform-provider-openstack/openstack" {
   version     = "1.54.1"
   constraints = "~> 1.54"
   hashes = [
+    "h1:JC0mScAPBs1MlHeEIPMZTQGhTA5aIG3iEuKMSPpR31E=",
     "h1:xt7LbO3lAXcDUjDxPHrQtgv4mO2GKvSOFMF1uPsK4vE=",
     "zh:45ba84df17f94b15af7aab7007241e035dde8a5b46aeb761259d937058a80f71",
     "zh:493b1deb7be9b600e5b1f5da2a9dfd3bce5df0c6d38090614dbe4ed05ade8441",
