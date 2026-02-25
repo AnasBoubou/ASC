@@ -1,1 +1,6 @@
-*/ 
+openrc-etudiant.sh
+cloud.yml
+terraform.tfstate
+terraform.tfstate.backup
+inventory.ini
+.venv/
