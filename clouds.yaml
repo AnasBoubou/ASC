@@ -1,0 +1,12 @@
+clouds:
+  ovh-sbg5:
+    auth:
+      auth_url: https://auth.cloud.ovh.net/v3
+      username: "user-UZ9BXJKC6v6Q"
+      password: "S9r53uYZcTYSwHQxErSS5bbXdAgpzbRx"
+      project_id: "cb2c5a2117f647c8b3dacd6e06471f5f"
+      project_name: "8697178539611767"
+      user_domain_name: "Default"
+      project_domain_name: "Default"
+    region_name: "SBG5"
+    identity_api_version: 3

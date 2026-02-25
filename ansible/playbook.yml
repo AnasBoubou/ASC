@@ -1,0 +1,45 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Mise à jour des paquets
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Installation de fail2ban
+      apt:
+        name: fail2ban
+        state: present
+
+    - name: Installation des dépendances Docker
+      apt:
+        name: [apt-transport-https, ca-certificates, curl, software-properties-common]
+        state: present
+
+    - name: Ajout de la clé GPG Docker
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Ajout du dépôt Docker
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu noble stable
+        state: present
+
+    - name: Installation de Docker Engine
+      apt:
+        name: [docker-ce, docker-ce-cli, containerd.io, docker-compose-plugin]
+        state: present
+
+    - name: Ajouter l'utilisateur ubuntu au groupe docker
+      user:
+        name: ubuntu
+        groups: docker
+        append: yes
+
+    - name: Initialiser le Swarm
+      shell: docker swarm init --advertise-addr {{ ansible_host }}
+      register: swarm_init
+      failed_when: false # Évite l'erreur si déjà initialisé
+ 
