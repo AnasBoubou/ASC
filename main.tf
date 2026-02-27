@@ -29,7 +29,6 @@ provider "openstack" {
 # Création d'une paire de clés SSH (si tu ne l'as pas déjà fait)
 resource "openstack_compute_keypair_v2" "main" {
   name = "my-keypair"
-  public_key = file("~/.ssh/id_ed25519.pub")
 }
 
 # Définition de ta machine virtuelle (Instance)
