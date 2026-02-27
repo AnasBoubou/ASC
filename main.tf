@@ -29,12 +29,13 @@ provider "openstack" {
 # Création d'une paire de clés SSH (si tu ne l'as pas déjà fait)
 resource "openstack_compute_keypair_v2" "main" {
   name = "my-keypair"
+  public_key = file("~/.ssh/id_ed25519.pub")
 }
 
 # Définition de ta machine virtuelle (Instance)
 resource "openstack_compute_instance_v2" "main" {
   name            = "Ahmidou-Anas-v2" # J'ai mis v2 pour forcer la mise à jour
-  image_name      = "Ubuntu 22.04"    # À vérifier selon les images dispo
+  image_name      = "Ubuntu 24.04"    # À vérifier selon les images dispo
   flavor_name     = "d2-2"            # À vérifier selon ton quota (ex: s1-2, d2-2)
   key_pair        = openstack_compute_keypair_v2.main.name
   security_groups = ["default"]
