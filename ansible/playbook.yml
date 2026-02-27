@@ -42,4 +42,14 @@
       shell: docker swarm init --advertise-addr {{ ansible_host }}
       register: swarm_init
       failed_when: false # Évite l'erreur si déjà initialisé
- 
+
+
+    - name: Générer le fichier de stack avec l'IP dynamique
+      ansible.builtin.template:
+      src: ./templates/app-whoami-stack.yml.j2
+      dest: /home/ubuntu/app-whoami-stack.yml
+
+    - name: Déployer la stack Docker sur le nœud distant
+      shell: docker stack deploy -c /home/ubuntu/app-whoami-stack.yml whoami
+
+

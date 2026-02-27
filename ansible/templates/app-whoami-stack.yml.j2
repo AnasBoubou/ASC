@@ -1,0 +1,14 @@
+app-whoami-stack.yml.j2version: '3.8'
+
+services:
+  whoami:
+    image: traefik/whoami
+    networks:
+      - traefik_traefik_proxy
+    deploy:
+      labels:
+        - "traefik.http.routers.whoami.rule=Host(`whoami.{{ ansible_host }}.traefik.me`)"
+
+networks:
+  traefik_traefik_proxy:
+    external: true
