@@ -44,3 +44,21 @@
         update_cache: yes
       tags:
         - swarm
+        # --- Stack Traefik ---
+    - name: Générer le fichier de stack Traefik
+      ansible.builtin.template:
+        src: ./templates/traefik-stack.yml.j2
+        dest: /home/ubuntu/traefik-stack.yml
+
+    - name: Déployer la stack Traefik
+      shell: docker stack deploy -c /home/ubuntu/traefik-stack.yml traefik
+
+    # --- Stack Whoami ---
+    - name: Générer le fichier de stack Whoami avec l'IP dynamique
+      ansible.builtin.template:
+        src: ./templates/app-whoami-stack.yml.j2
+        dest: /home/ubuntu/app-whoami-stack.yml
+    
+    - name: Déployer la stack Whoami
+      shell: docker stack deploy -c /home/ubuntu/app-whoami-stack.yml whoami
+ 
